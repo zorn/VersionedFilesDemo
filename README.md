@@ -20,3 +20,4 @@ Demo of a SwiftUI document-based app. Trying to work out how file versions over 
 * https://developer.apple.com/videos/play/wwdc2020/10039/
 * https://developer.apple.com/documentation/swiftui/documentgroup
 * https://developer.apple.com/documentation/uniformtypeidentifiers
+* https://developer.apple.com/documentation/uniformtypeidentifiers/defining_file_and_data_types_for_your_app
