@@ -1,0 +1,19 @@
+{
+  "people" : [
+    {
+      "birthday" : "0001-01-01T00:00:00Z",
+      "first_name" : "Fred",
+      "id" : "4E966EDD-893C-4F96-973A-949411B50149",
+      "last_name" : "Weasley",
+      "mark_as_favorite" : false
+    },
+    {
+      "birthday" : null,
+      "first_name" : "George",
+      "id" : "4545A339-A09F-4AEE-BE46-1C4FCF6466AA",
+      "last_name" : "Weasley",
+      "mark_as_favorite" : false
+    }
+  ],
+  "schema_version" : 3
+}

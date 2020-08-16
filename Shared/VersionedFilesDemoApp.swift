@@ -1,10 +1,3 @@
-//
-//  VersionedFilesDemoApp.swift
-//  Shared
-//
-//  Created by zorn on 8/12/20.
-//
-
 import SwiftUI
 
 @main

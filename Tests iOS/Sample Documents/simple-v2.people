@@ -1,0 +1,15 @@
+{
+  "people" : [
+    {
+      "id" : "4E966EDD-893C-4F96-973A-949411B50149",
+      "first_name" : "Fred",
+      "last_name" : "Weasley"
+    },
+    {
+      "id" : "4545A339-A09F-4AEE-BE46-1C4FCF6466AA",
+      "first_name" : "George",
+      "last_name" : "Weasley"
+    }
+  ],
+  "schema_version" : 2
+}

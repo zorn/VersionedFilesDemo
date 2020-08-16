@@ -1,37 +1,43 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-extension UTType {
-    static var exampleText: UTType {
-        UTType(importedAs: "com.zornlabs.version-file-demo.people")
-    }
-}
-
 struct PeopleDocument: FileDocument {
+    
+    /// Documents the type of file `PeopleDocument` knows how to read (and write).
+    /// A requirement of the `FileDocument` protocol.
+    static var readableContentTypes: [UTType] { [.peopleDocumentType] }
+    
+    /// Stores the ordered collection of of `Person` objects this document will manage.
     var people: [Person]
-
+    
     init(people: [Person]) {
         self.people = people
     }
 
-    static var readableContentTypes: [UTType] { [.exampleText] }
-
     init(fileWrapper: FileWrapper, contentType: UTType) throws {
-        guard
-            let data = fileWrapper.regularFileContents,
-            let people = try? JSONDecoder().decode([Person].self, from: data)
-        else {
+        guard let data = fileWrapper.regularFileContents else {
             throw CocoaError(.fileReadCorruptFile)
         }
-        self.people = people
+        let fileRep = try PeopleDocumentFileRepresentation(data: data)
+        self.people = fileRep.people
     }
     
     func write(to fileWrapper: inout FileWrapper, contentType: UTType) throws {
         do {
-            let data = try JSONEncoder().encode(people)
-            fileWrapper = FileWrapper(regularFileWithContents: data)
+            let fileRep = PeopleDocumentFileRepresentation(people: self.people)
+            // FIXME: Not sure if it's best to let a `DecodingError` error be thrown here,
+            // but it does help debugging. Need to test how `FileDocument` will present
+            // such an error.
+            let fileRepData = try fileRep.data()
+            fileWrapper = FileWrapper(regularFileWithContents: fileRepData)
         } catch {
             throw CocoaError(.fileReadCorruptFile)
         }
+    }
+}
+
+extension UTType {
+    static var peopleDocumentType: UTType {
+        UTType(importedAs: "com.zornlabs.version-file-demo.people")
     }
 }

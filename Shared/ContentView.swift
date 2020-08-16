@@ -1,20 +1,13 @@
-//
-//  ContentView.swift
-//  Shared
-//
-//  Created by zorn on 8/12/20.
-//
-
 import SwiftUI
 
 struct ContentView: View {
     @Binding var document: PeopleDocument
-    
+        
     var body: some View {
         NavigationView {
             List {
                 ForEach(document.people) { person in
-                    Text(person.name)
+                    Text(fullName(firstName: person.firstName, lastName: person.lastName))
                 }
             }
             .navigationBarTitle("People")
@@ -26,6 +19,14 @@ struct ContentView: View {
                 }
             }
         }
+    }
+    
+    private func fullName(firstName: String, lastName: String) -> String {
+        let nameFormatter = PersonNameComponentsFormatter()
+        var nameComponents = PersonNameComponents()
+        nameComponents.givenName = firstName
+        nameComponents.familyName = lastName
+        return nameFormatter.string(from: nameComponents)
     }
 }
 

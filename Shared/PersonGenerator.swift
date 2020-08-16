@@ -4,8 +4,7 @@ struct PersonGenerator {
     
     static func randomPerson() -> Person {
         // Only using ! here since this is a demo thing.
-        let randomName = "\(firstNames.randomElement()!) \(lastNames.randomElement()!)"
-        return Person(name: randomName)
+        return Person(firstName: firstNames.randomElement()!, lastName: lastNames.randomElement()!, birthday: nil, markAsFavorite: false)
     }
     
     static private let firstNames = [

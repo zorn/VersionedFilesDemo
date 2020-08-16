@@ -1,0 +1,13 @@
+{
+  "people" : [
+    {
+      "id" : "4E966EDD-893C-4F96-973A-949411B50149",
+      "name" : "Fred Weasley"
+    },
+    {
+      "id" : "4545A339-A09F-4AEE-BE46-1C4FCF6466AA",
+      "name" : "George Weasley"
+    }
+  ],
+  "schema_version" : 1
+}

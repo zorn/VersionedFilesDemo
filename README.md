@@ -15,9 +15,22 @@ Demo of a SwiftUI document-based app. Trying to work out how file versions over 
 * How does a version update failure get handled and reported? Does the user have any fallback?
 * Need a way to sniff a file for it's version. Could maybe make an assumption of the `version` property at the root of the json and reject if not found. I know core data puts version meta into the file system attributes but I don't think we should count on that since people may move these files around (email, websites, etc.)
 
+## Notable Limitations and Issues
+
+* Performance: This code is not very optimized. 
+
+## Future Ideas
+
+* Could store metadata at the top level of the JSON file, including the version of the app that wrote the file to help with debugging.
+* If I were building out an app, I would try to enable the user to post a bug report and share any file that can not be opened properly.
+
 ## Related Resources
 
 * https://developer.apple.com/videos/play/wwdc2020/10039/
 * https://developer.apple.com/documentation/swiftui/documentgroup
 * https://developer.apple.com/documentation/uniformtypeidentifiers
 * https://developer.apple.com/documentation/uniformtypeidentifiers/defining_file_and_data_types_for_your_app
+
+## Notes
+
+* While the type safty of Swift leans me to create `V1.Person` and `V2.Person` that feels like it will get out of hand quickly and add a burdon to the dev when making schema adjustments.
