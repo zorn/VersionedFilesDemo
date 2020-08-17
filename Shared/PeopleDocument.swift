@@ -39,14 +39,14 @@ struct PeopleDocument: FileDocument {
             let fileRepData = try fileRep.data()
             fileWrapper = FileWrapper(regularFileWithContents: fileRepData)
             // FIXME: No string keys.
-            fileWrapper.fileAttributes.updateValue(fileRep.schemaVersion.rawValue, forKey: "schema_version")
+            var mutableFileAttributes = fileWrapper.fileAttributes
+            mutableFileAttributes.updateValue(fileRep.schemaVersion.rawValue, forKey: "schema_version")
+            fileWrapper.fileAttributes = mutableFileAttributes
             
             print(fileWrapper.fileAttributes)
             // It is being stored, eg:
             // ["NSFileModificationDate": 2020-08-17 00:16:54 +0000, "NSFileType": NSFileTypeRegular, "schema_version": 3, "NSFilePosixPermissions": 438]
-
-            
-            
+            // but when this file is opened (above) the "schema_version" is not there.
         } catch {
             throw CocoaError(.fileReadCorruptFile)
         }
