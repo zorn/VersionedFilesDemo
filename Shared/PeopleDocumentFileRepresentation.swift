@@ -38,22 +38,45 @@ struct PeopleDocumentFileRepresentation {
         self.people = people
     }
     
-    init(data: Data) throws {
-        let migratedData = try PeopleDocumentFileRepresentation.self.migrateData(data)
+    init(data: Data, expectedSchemaVersion: Int?) throws {
+        
+        let detectedSchemaVersion = try PeopleDocumentFileRepresentation.self.detectedSchemaVersion(data: data, expectedSchemaVersion: expectedSchemaVersion)
+        
         let decoder = PeopleDocumentFileRepresentation.self.decoder
-        self = try decoder.decode(PeopleDocumentFileRepresentation.self, from: migratedData)
+        
+        // FIXME: Can I compare the enum values directly or do I have to use `rawValue`?
+        if detectedSchemaVersion.rawValue < CURRENT_SCHEMA_VERSION.rawValue {
+            let migratedData = try PeopleDocumentFileRepresentation.self.migrateData(data)
+            self = try decoder.decode(PeopleDocumentFileRepresentation.self, from: migratedData)
+        } else {
+            self = try decoder.decode(PeopleDocumentFileRepresentation.self, from: data)
+        }
     }
     
     func data() throws -> Data {
         try type(of: self).encoder.encode(self)
     }
     
+    /// Given the data content and an optional `expectedSchemaVersion` which may have been provided
+    /// from a fileAttribute, return the detectedSchemaVersion.
+    /// This function was written to help optimize behavior when the schemaVersion was correctly recorded and read from
+    /// the `FileWrapper`'s `fileAttributes` and help us avoid sniffing the schemaVersion from the contents
+    /// of the file (which is expensive).
+    private static func detectedSchemaVersion(data: Data, expectedSchemaVersion: Int?) throws -> KnownSchemaVersions {
+        if
+            let expectedSchemaVersion = expectedSchemaVersion,
+            let detectedSchemaVersion = KnownSchemaVersions(rawValue: expectedSchemaVersion)
+        {
+            return detectedSchemaVersion
+        } else {
+            return try schemaVersionOf(data)
+        }
+    }
+    
     private static func migrateData(_ data: Data) throws -> Data {
-        // FIXME: It feels expensive to import the data into a in-memory JSONContent just to verify the `schema_version`.
         guard let jsonContent = try JSONSerialization.jsonObject(with: data) as? JSONContent else {
             throw MigrationError.unexpectedFormat
         }
-        // Only feed the `jsonContent` to the migrators if the current version does not match.
         let currentDataVersion = try PeopleDocumentFileRepresentation.self.schemaVersionOf(jsonContent)
         if currentDataVersion == CURRENT_SCHEMA_VERSION {
             return data
@@ -72,6 +95,13 @@ struct PeopleDocumentFileRepresentation {
         case .v3:
             return jsonContent
         }
+    }
+    
+    private static func schemaVersionOf(_ data: Data) throws -> KnownSchemaVersions {
+        guard let jsonContent = try JSONSerialization.jsonObject(with: data) as? JSONContent else {
+            throw MigrationError.unexpectedFormat
+        }
+        return try schemaVersionOf(jsonContent)
     }
     
     private static func schemaVersionOf(_ jsonContent: JSONContent) throws -> KnownSchemaVersions {
