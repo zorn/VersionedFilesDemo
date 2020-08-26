@@ -5,7 +5,7 @@ struct Person: Codable, Equatable, Identifiable {
     let firstName: String
     let lastName: String
     // FIXME: Storing a `birthday` as a `Date` is questionable since the time values add confusion and potential bugs.
-    // In production I'd probably use `DateComponents` and serialize as a string `YYYY-MM-DD`.
+    // In a production app I'd probably use `DateComponents` and serialize as a string `YYYY-MM-DD`.
     let birthday: Date?
     let markAsFavorite: Bool
 

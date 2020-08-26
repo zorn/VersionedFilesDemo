@@ -3,13 +3,14 @@ import UniformTypeIdentifiers
 
 struct PeopleDocument: FileDocument {
     
-    /// Documents the type of file `PeopleDocument` knows how to read (and write).
+    /// Describes the type of file `PeopleDocument` knows how to read (and write).
     /// A requirement of the `FileDocument` protocol.
     static var readableContentTypes: [UTType] { [.peopleDocumentType] }
     
     /// Stores the ordered collection of of `Person` objects this document will manage.
     var people: [Person]
     
+    /// Currently only used by testing.
     init(people: [Person]) {
         self.people = people
     }

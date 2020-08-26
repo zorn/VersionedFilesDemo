@@ -1,5 +1,8 @@
 import Foundation
 
+// Used in the UI demo of the app for quick, random people generation.
+// I generally like to keep Fixtures out of any production code but these
+// two behaviors do overlap a bit.
 struct PersonGenerator {
     
     static func randomPerson() -> Person {
