@@ -38,10 +38,17 @@ struct PeopleDocumentFileRepresentation {
         self.people = people
     }
     
-    init(data: Data) throws {
-        let migratedData = try PeopleDocumentFileRepresentation.self.migrateData(data)
+    init(data: Data) throws {        
+        // To avoid pulling in the entier JSONContent into memory just to sniff for
+        // a schema version we'll try to decode the data as-is, and if it fails we'll
+        // do the migration and try again
         let decoder = PeopleDocumentFileRepresentation.self.decoder
-        self = try decoder.decode(PeopleDocumentFileRepresentation.self, from: migratedData)
+        if let decodedFileRep = try? decoder.decode(PeopleDocumentFileRepresentation.self, from: data) {
+            self = decodedFileRep
+        } else {
+            let migratedData = try PeopleDocumentFileRepresentation.self.migrateData(data)
+            self = try decoder.decode(PeopleDocumentFileRepresentation.self, from: migratedData)
+        }
     }
     
     func data() throws -> Data {
