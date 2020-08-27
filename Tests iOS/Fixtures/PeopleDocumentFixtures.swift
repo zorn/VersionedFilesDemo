@@ -1,11 +1,13 @@
 import Foundation
+import SwiftUI
 import UniformTypeIdentifiers
 @testable import VersionedFilesDemo
 
 struct PeopleDocumentFixtures {
     
     static var simpleV1: PeopleDocument {
-        return try! PeopleDocument(fileWrapper: simple(version: 1), contentType: UTType.peopleDocumentType)
+        let configuration = PeopleDocument.ReadConfiguration(contentType: UTType.peopleDocumentType, file: simple(version: 1))
+        return try! PeopleDocument(configuration: configuration)
     }
     
     static var simpleV2: PeopleDocument {

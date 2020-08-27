@@ -14,23 +14,23 @@ struct PeopleDocument: FileDocument {
     init(people: [Person]) {
         self.people = people
     }
-
-    init(fileWrapper: FileWrapper, contentType: UTType) throws {
-        guard let data = fileWrapper.regularFileContents else {
+    
+    init(configuration: ReadConfiguration) throws {
+        guard let data = configuration.file.regularFileContents else {
             throw CocoaError(.fileReadCorruptFile)
         }
         let fileRep = try PeopleDocumentFileRepresentation(data: data)
         self.people = fileRep.people
     }
-    
-    func write(to fileWrapper: inout FileWrapper, contentType: UTType) throws {
+
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
         do {
             let fileRep = PeopleDocumentFileRepresentation(people: self.people)
             // FIXME: Not sure if it's best to let a `DecodingError` error be thrown here,
             // but it does help debugging. Need to test how `FileDocument` will present
             // such an error.
             let fileRepData = try fileRep.data()
-            fileWrapper = FileWrapper(regularFileWithContents: fileRepData)
+            return .init(regularFileWithContents: fileRepData)
         } catch {
             throw CocoaError(.fileReadCorruptFile)
         }
