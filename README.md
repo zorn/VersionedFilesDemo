@@ -2,6 +2,8 @@
 
 The following project is a demo of a SwiftUI document-based app that stores it's document content in a JSON file.
 
+Note: SwiftUI is still a bit of a moving target. This demo works as of Xcode 12 beta 6.
+
 The problem we are modeling is how to migrate an ever changing document file schema over time.
 
 The solution we've come up with is the introduction of `PeopleDocumentFileRepresentation` which will own the serialization aspects of `PeopleDocument` to and from disk.
