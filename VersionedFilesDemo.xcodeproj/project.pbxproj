@@ -24,6 +24,8 @@
 		1A639A6424E9B5FB007D3F9A /* MigrateV2ToV3swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A639A6324E9B5FB007D3F9A /* MigrateV2ToV3swift.swift */; };
 		1A639A6524E9B5FB007D3F9A /* MigrateV2ToV3swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A639A6324E9B5FB007D3F9A /* MigrateV2ToV3swift.swift */; };
 		1A639A6624E9B5FB007D3F9A /* MigrateV2ToV3swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A639A6324E9B5FB007D3F9A /* MigrateV2ToV3swift.swift */; };
+		1A6D783324FE85ED0059147D /* PeopleDocumentFileRepresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D783224FE85ED0059147D /* PeopleDocumentFileRepresentationTests.swift */; };
+		1A6D783524FE87460059147D /* PeopleDocumentFileRepresentationFixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6D783424FE87460059147D /* PeopleDocumentFileRepresentationFixtures.swift */; };
 		1A87B08824E86F4800F448E3 /* PeopleDocumentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A87B08724E86F4800F448E3 /* PeopleDocumentTests.swift */; };
 		1AADEDAC24E8792C006DA24E /* PeopleDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A41E05A24E45A50007A7DEF /* PeopleDocument.swift */; };
 		1AADEDB024E87A11006DA24E /* simple-v1.people in Resources */ = {isa = PBXBuildFile; fileRef = 1AADEDAF24E87A11006DA24E /* simple-v1.people */; };
@@ -76,6 +78,8 @@
 		1A639A5924E98A91007D3F9A /* RawJSON.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RawJSON.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1A639A5B24E9B0AC007D3F9A /* MigrateV1ToV2swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrateV1ToV2swift.swift; sourceTree = "<group>"; };
 		1A639A6324E9B5FB007D3F9A /* MigrateV2ToV3swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrateV2ToV3swift.swift; sourceTree = "<group>"; };
+		1A6D783224FE85ED0059147D /* PeopleDocumentFileRepresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDocumentFileRepresentationTests.swift; sourceTree = "<group>"; };
+		1A6D783424FE87460059147D /* PeopleDocumentFileRepresentationFixtures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDocumentFileRepresentationFixtures.swift; sourceTree = "<group>"; };
 		1A87B07524E8613800F448E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1A87B08724E86F4800F448E3 /* PeopleDocumentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleDocumentTests.swift; sourceTree = "<group>"; };
 		1AADEDAF24E87A11006DA24E /* simple-v1.people */ = {isa = PBXFileReference; lastKnownFileType = text; path = "simple-v1.people"; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				1A87B08724E86F4800F448E3 /* PeopleDocumentTests.swift */,
+				1A6D783224FE85ED0059147D /* PeopleDocumentFileRepresentationTests.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -254,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				1AADEDBB24E88A76006DA24E /* PeopleDocumentFixtures.swift */,
+				1A6D783424FE87460059147D /* PeopleDocumentFileRepresentationFixtures.swift */,
 				1AADEDCF24E979E1006DA24E /* PersonFixture.swift */,
 			);
 			path = Fixtures;
@@ -453,9 +459,11 @@
 				1AADEDCE24E97898006DA24E /* Person.swift in Sources */,
 				1A87B08824E86F4800F448E3 /* PeopleDocumentTests.swift in Sources */,
 				1A639A6624E9B5FB007D3F9A /* MigrateV2ToV3swift.swift in Sources */,
+				1A6D783524FE87460059147D /* PeopleDocumentFileRepresentationFixtures.swift in Sources */,
 				1AADEDB224E883E3006DA24E /* PeopleDocumentFileRepresentation.swift in Sources */,
 				1AADEDBC24E88A76006DA24E /* PeopleDocumentFixtures.swift in Sources */,
 				1AADEDD024E979E1006DA24E /* PersonFixture.swift in Sources */,
+				1A6D783324FE85ED0059147D /* PeopleDocumentFileRepresentationTests.swift in Sources */,
 				1AADEDAC24E8792C006DA24E /* PeopleDocument.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
