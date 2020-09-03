@@ -34,7 +34,7 @@ class PeopleDocumentFileRepresentationTests: XCTestCase {
         XCTAssertEqual(contents, expectedContents)
     }
     
-    func test_peopleDocumentFileRepresentation_canOpen_withTwoPeople() throws {
+    func test_peopleDocumentFileRepresentation_canOpen_version3FileFormat() throws {
         let document = PeopleDocumentFileRepresentationFixtures.simpleV3
         XCTAssertEqual(document.people.count, 2)
         let fred = document.people[0]
